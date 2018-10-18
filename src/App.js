@@ -22,7 +22,7 @@ const App = () => (
   <Layout>p
     
     <main>
-      {/* <Home /> */}
+      <Home />
     </main>
   </Layout>
 )
