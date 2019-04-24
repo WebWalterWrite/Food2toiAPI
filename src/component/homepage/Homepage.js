@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-
+import { animateScroll as scroll } from 'react-scroll';
 import { ParaxTitle, ParaxChoice } from "../parallax/Parallax";
 
 import {Choice, Div} from './homepage.styled';
@@ -18,18 +18,17 @@ const Homepage = () => {
 		mac => add 188
    */
   const isHeight = () => {
-	  if(window.innerHeight === 821) 
+	  let h = window.innerHeight;
+	  if(h === 821) 
 	  return 151
-	  if(window.innerHeight === 1073)
+	  if(h === 1073 ||h === 1152)
 	  return 188
   };
 
   const scrolling = e => {
-    let num = e.target.dataset.multiple;
-		window.scrollTo({
-			top: window.innerHeight * num + isHeight(),
-			behavior: "smooth"
-			})
+	let num = e.target.dataset.multiple;
+		console.log(window.innerHeight)
+		scroll.scrollTo(window.innerHeight * num + isHeight());
   };
     
     return (
