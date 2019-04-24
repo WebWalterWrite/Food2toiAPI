@@ -47,6 +47,10 @@ body{
    background-color: black;
    font-size :1.4rem;
 };
+h1, p{
+  font-family:Lily Script One,cursive;
+  color: #FFFFFF;
+}
 p{
   letter-spacing: 3px;
 }
