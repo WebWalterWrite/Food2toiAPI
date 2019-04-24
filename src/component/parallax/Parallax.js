@@ -33,7 +33,7 @@ export const ParaxChoice = ({ children, img }) => (
     bgImage={img}
     bgImageAlt="pasta"
     style={{ height: "100vh" }}
-    renderLayer={percentage => {
+    renderLayer={ percentage => {
       let percent = percentage * 2;
       return (
         <Fragment>
