@@ -1,14 +1,28 @@
 import React from "react";
 
+// import component
 import { ParaxStarter } from "../parallax/Parallax";
+// import data & utils functions
+import { Vegetables } from './starter.styled';
+import { storeData } from '../../utils/functions';
 
+// import styles & images
 import { Div } from "../homepage/homepage.styled";
-
 import starterBack from "../../assets/images/starterbackground.jpg";
 import vegetables from "./data.js";
 
 const Starter = () => {
-	console.log(vegetables);
+	
+
+	const storeProducts = e => {
+		let productId = e.currentTarget.dataset.id;
+		let item = e.currentTarget.dataset.type;
+		let product = vegetables.find( ({id}) => id === productId );
+
+		storeData(item, product)
+		
+	};	
+
 	return (
 		<ParaxStarter img={starterBack}>
 			<Div>
@@ -20,14 +34,18 @@ const Starter = () => {
 			</Div>
 			<section>
 				<h1>Choix des légumes</h1>
-				{vegetables.map(({ image, name }, k) => {
+
+				<Vegetables>
+				{vegetables.map(({ image, name, id }, k) => {
 					return (
-						<div key={k}>
-							<img src={image}  alt="légumes" width="250" />
+						
+						<div key={k} data-id={id} data-type="v" onClick={storeProducts} >
+							<img src={image}  alt="légumes" width="150" />
 							<p>{name}</p>
 						</div>
 					);
 				})}
+				</Vegetables>
 			</section>
 		</ParaxStarter>
 	);
