@@ -6,7 +6,7 @@ export const Vegetables = styled.div`
         flex-wrap:wrap;
         align-items: center;
         justify-content: space-around;
-        background-color: rgba(0,0,0,0.4);
+        background-color: rgba(0,0,0,0.6);
         div{
             text-align:center;
             padding-top:1em;
