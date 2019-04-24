@@ -13,11 +13,21 @@ const LazyStarter = lazy( () => import ('../recipes/Starter'));
 
 const Homepage = () => {
 
-    
+  /*
+		macbook pro => add 151 (header)
+		mac => add 188
+   */
+  const isHeight = () => {
+	  if(window.innerHeight === 821) 
+	  return 151
+	  if(window.innerHeight === 1073)
+	  return 188
+  };
+
   const scrolling = e => {
     let num = e.target.dataset.multiple;
 		window.scrollTo({
-			top: window.innerHeight * num + 188,
+			top: window.innerHeight * num + isHeight(),
 			behavior: "smooth"
 			})
   };
@@ -28,14 +38,17 @@ const Homepage = () => {
 					<Div>
 						<h1>Envie d'une recette....</h1>
 						<p>
-							Vous avez aucune idée de recette en tête pour une entrée, un
-							plat ou un dessert.....mais peut être que vous savez quels
-							ingrédients vous aimeriez utiliser pour cette dernière !!!.
+							Tu as aucune idée de recette en tête pour une entrée, un
+							plat ou un dessert <span role="img" aria-label="dépité"> 😩😩</span>.....mais tu sais quels
+							ingrédients tu aimerez utiliser
+							<span role="img" aria-label="happy"> 🤗🤗</span>!!.
 						</p>
 						<p>
-							Selectionner simplement vos ingrédients principaux et
-							choisissez une recette parmi la liste établie en fonction de
-							vos critères
+							Selectionne simplement tes ingrédients  <br/>
+							<span role="img" aria-label="vegetables"> 🥦 🥑 🥕 🥩 🍗</span>... et 
+							choisi une recette parmi des centaines de recettes 
+							<span role="img" aria-label="recipes"> 🥗 🍝 🥘</span> 
+							...toutes aussi appètissantes les unes que les autres.
 						</p>
 						<button data-multiple="1" onClick={scrolling}>
 							continuer

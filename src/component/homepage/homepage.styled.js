@@ -48,7 +48,7 @@ export const Div = styled.div`
 	text-align: center;
 	h1 {
 		${media.phone`font-size: 48px;`};
-		${media.desktopM`font-size: 68px;`};
+		${media.desktopM`font-size: 18px;`};
 		${media.desktopL`font-size: 78px;`};
 	}
 	p {
