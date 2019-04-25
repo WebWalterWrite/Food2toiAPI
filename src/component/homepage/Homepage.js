@@ -19,7 +19,7 @@ const Homepage = () => {
    */
   const isHeight = () => {
 	  let h = window.innerHeight;
-	  if(h === 821) 
+	  if(h === 821 || 900) 
 	  return 151
 	  if(h === 1073 ||h === 1152)
 	  return 188
