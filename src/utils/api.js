@@ -27,8 +27,8 @@ export const getRecipes = async (...data) => {
   let choice = data.join("+");
 
   const result = await axios.get(
-    `${URL}?&app_id=${API_ID}&app_key=${API_KEY}&q=${choice}&r&from=0&to=20`
-  );
+		`${URL}?&app_id=${API_ID}&app_key=${API_KEY}&q=${choice}&from=0&to=20`
+	);
   console.log(result.data.hits);
   return result.data.hits;
   }
