@@ -2,6 +2,9 @@ import React from "react";
 
 // import component
 import { ParaxStarter } from "../parallax/Parallax";
+
+//import Api
+import { getRecipes } from '../../utils/api';
 // import data & utils functions
 import { Vegetables } from './starter.styled';
 import { storeData } from '../../utils/functions';
@@ -11,16 +14,19 @@ import { Div } from "../homepage/homepage.styled";
 import starterBack from "../../assets/images/starterbackground.jpg";
 import vegetables from "./data.js";
 
+const importAll = (r) => r.keys().map(r);
+const img = importAll(require.context("../../assets/images/", true, /\.jpg$/));
+
 const Starter = () => {
 	
-
+	console.log(img)
 	const storeProducts = e => {
 		let productId = e.currentTarget.dataset.id;
 		let item = e.currentTarget.dataset.type;
 		let product = vegetables.find( ({id}) => id === productId );
 
 		storeData(item, product)
-		
+		getRecipes('salade');
 	};	
 
 	return (
