@@ -2,13 +2,9 @@ import React, { lazy, Suspense } from "react";
 import { animateScroll as scroll } from 'react-scroll';
 import { ParaxTitle, ParaxChoice } from "../parallax/Parallax";
 
-import {Choice, Div} from './homepage.styled';
+import {CarrouselImg, Choice, Div} from './homepage.styled';
 
-import plat from "../../assets/images/food-1932466_1280.jpg";
-import pasta from "../../assets/images/ingredients.jpg";
-import starter from '../../assets/images/starterfood.jpg';
-import main from '../../assets/images/mainfood.jpg';
-
+const images = require.context("../../assets/images/", true);
 const LazyStarter = lazy( () => import ('../recipes/Starter'));
 
 const Homepage = () => {
@@ -19,9 +15,9 @@ const Homepage = () => {
    */
   const isHeight = () => {
 	  let h = window.innerHeight;
-	  if(h === 821 || 900) 
+	  if(h === 821 || h === 900) 
 	  return 151
-	  if(h === 1073 ||h === 1152)
+	  if(h === 1073 || h === 1152)
 	  return 188
   };
 
@@ -33,20 +29,39 @@ const Homepage = () => {
     
     return (
 			<section>
-				<ParaxTitle img={pasta}>
+				<ParaxTitle img={images("./ingredients.jpg")}>
 					<Div>
 						<h1>Envie d'une recette....</h1>
 						<p>
-							Tu as aucune idée de recette en tête pour une entrée, un
-							plat ou un dessert <span role="img" aria-label="dépité"> 😩😩</span>.....mais tu sais quels
-							ingrédients tu aimerez utiliser
-							<span role="img" aria-label="happy"> 🤗🤗</span>!!.
+							Tu as aucune idée de recette en tête pour une entrée, un plat
+							ou un dessert{" "}
+							<span role="img" aria-label="dépité">
+								{" "}
+								😩😩
+							</span>
+							.....mais tu sais quels ingrédients tu aimerez utiliser
+							<span role="img" aria-label="happy">
+								{" "}
+								🤗🤗
+							</span>
+							!!.
 						</p>
 						<p>
-							Selectionne simplement tes ingrédients  <br/>
-							<span role="img" aria-label="vegetables"> 🥦 🥑 🥕 🥩 🍗</span>... et 
-							choisi une recette parmi des centaines de recettes 
-							<span role="img" aria-label="recipes"> 🥗 🍝 🥘</span> 
+							Selectionne simplement tes ingrédients <br />
+							<span role="img" aria-label="vegetables">
+								{" "}
+								🥦 🥑 🥕 🥩 🍗
+							</span>{" "}
+							ou un type de cuisine
+							<span role="img" aria-label="flag">
+								{" "}
+								🌮 🍱 🍜 🥘
+							</span>
+							... et choisi une recette parmi des centaines de recettes
+							<span role="img" aria-label="recipes">
+								{" "}
+								🥗 🍝 🥘
+							</span>
 							...toutes aussi appètissantes les unes que les autres.
 						</p>
 						<button data-multiple="1" onClick={scrolling}>
@@ -54,26 +69,38 @@ const Homepage = () => {
 						</button>
 					</Div>
 				</ParaxTitle>
-
-				<ParaxChoice img={plat}>
-					<h1>Je recherche une recette pour...</h1>
+				<ParaxChoice img={images("./food-1932466_1280.jpg")}>
+					<h1>Je recherche une recette par...</h1>
 					<Choice>
 						<div onClick={scrolling}>
-							<h4 data-multiple="2">Une entrée</h4>
-							<img src={starter} alt="une entrée" width="400" />
+							<h4 data-multiple="2">ingrédients</h4>
+							<img
+								src={images("./ingredientsfood.jpg")}
+								alt="ingrédients"
+								width="400"
+							/>
 						</div>
 						<div>
-							<h4>Un plat</h4>
-							<img src={main} alt="un plat" width="400" />
+							<h4>type</h4>
+							<CarrouselImg>
+
+							
+							<img
+								src={images("./intlfood/intlfood1.jpg")}
+								alt="un plat"
+								width="400"
+							/>
+							</CarrouselImg>
 						</div>
 					</Choice>
 				</ParaxChoice>
-{/* 
+				{/* 
 - créer 2 composants: composants starter et plat
 - importer ses composants selon lazy load 
 - Le composant contiendra sa liste respectif d'ingrédients.
-*/}				<Suspense fallback={<div>Loading...</div>}>
-				<LazyStarter/>
+*/}{" "}
+				<Suspense fallback={<div>Loading...</div>}>
+					<LazyStarter />
 				</Suspense>
 			</section>
 		);

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { media } from "../../styles/responsive.styled";
 
 
@@ -70,4 +70,8 @@ export const Div = styled.div`
 		outline: none;
 		font-size: 18px;
 	}
+`;
+
+export const CarrouselImg = styled.div`
+	overflow:hidden;
 `;
