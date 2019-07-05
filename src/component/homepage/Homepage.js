@@ -83,7 +83,7 @@ const Homepage = () => {
 								{" "}
 								😩😩
 							</span>
-							.....mais tu sais quels ingrédients tu aimerez utiliser
+							.....mais tu ne sais pas quels ingrédients tu aimerez utiliser
 							<span role="img" aria-label="happy">
 								{" "}
 								🤗🤗
