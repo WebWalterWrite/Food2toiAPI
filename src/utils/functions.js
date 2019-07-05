@@ -2,6 +2,7 @@
 // Récupérer le contenu du localstorage
 const getLocalStorage = item => JSON.parse(localStorage.getItem(item));
 
+console.log(getLocalStorage())
 // persister localstorage
 const setLocalStorage = (item, array) => localStorage.setItem(item, JSON.stringify(array));
 
@@ -12,12 +13,12 @@ const setLocalStorage = (item, array) => localStorage.setItem(item, JSON.stringi
  */
 export const storeData = (item, p) => {
 
+
     // Vérifier si des données existent si non créer un nouveau array.
     let arrayOfProducts = getLocalStorage(item) ? getLocalStorage(item) : [];
 
     // Récupérer le array
     let getStorage = getLocalStorage(item);
-
 
     // Si getStorage true, Vérifier si le produit est déjà présent
     const isProduct = getStorage && getStorage.find(({ id }) => id === p.id);
@@ -29,3 +30,15 @@ export const storeData = (item, p) => {
     setLocalStorage(item,arrayOfProducts);
 
 };
+
+
+/**
+ * @description - return array of images
+ * @param {string} path - chemin directory
+ */
+
+ export const arrayOfContentFolder = path => {
+      
+    console.log(path)
+
+ }
