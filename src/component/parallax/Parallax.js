@@ -39,7 +39,6 @@ export const ParaxChoice = ({ children, img }) => (
         <Fragment>
           <Div
             transform={`translate(0px,${percent * 40}px)`}
-            fontSize={48}
             opacity={`${percent * 1}`}
           >
             {children}

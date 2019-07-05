@@ -1,11 +1,13 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import { animateScroll as scroll } from 'react-scroll';
 import { ParaxTitle, ParaxChoice } from "../parallax/Parallax";
 
-import {CarrouselImg, Choice, Div} from './homepage.styled';
+import { Choice, Div, Title} from './homepage.styled';
 
 const images = require.context("../../assets/images/", true);
-const LazyStarter = lazy( () => import ('../recipes/Starter'));
+const LazyIngredients = lazy( () => import ('../recipes/Ingredients'));
+const LazyCountry = lazy ( () => import('../recipes/Country'));
+const LazyRecipes = lazy( () => import('../recipes/RecipesResult'));
 
 const Homepage = () => {
 
@@ -13,20 +15,62 @@ const Homepage = () => {
 		macbook pro => add 151 (header)
 		mac => add 188
    */
-  const isHeight = () => {
-	  let h = window.innerHeight;
+  const [view, setView ] = useState({
+	  ingredients: false,
+	  type: false
+  });
+
+  const [recipes, setRecipes ] = useState({
+	  show:false,
+	  result:[]
+  });
+
+  console.log(recipes)
+
+  /**
+   * @description - Retourne la hauteur de la fenetre en cours
+   */
+  const headerHeight = () => {
+	  const h = window.innerHeight;
+	  console.log(document.documentElement.clientHeight)
+	  console.log(h)
 	  if(h === 821 || h === 900) 
-	  return 151
-	  if(h === 1073 || h === 1152)
+	  return 90
+	  if(h === 1231 || 1350)
 	  return 188
+	  if(h == 719){
+		console.log('yes')
+	  return 250 
+	  }
+  };	
+
+  /**
+   * @description - Swith sur la visibilité du composant lors du click sur le type de recherche.
+   * @param {*} val - propriété du view state
+   */
+  const switchView = (val, scroll) => {
+	setView(prevState => ({...!prevState, [val]:!prevState[val]})
+		 ) ;
+	scrolling(scroll)
+	
   };
 
-  const scrolling = e => {
-	let num = e.target.dataset.multiple;
-		console.log(window.innerHeight)
-		scroll.scrollTo(window.innerHeight * num + isHeight());
+  const showRecipes = data => {
+	  console.log(data)
+	  setRecipes(prevState => ({show:!prevState.show, result:data }));
+	  scrolling(3)
   };
-    
+
+  /**
+   * @description - Scroll jusqu'au prochain composant
+   * @param {object || string} e - contient le mutliple pour calculer le scroll
+   */
+  const scrolling = (e) => {
+	  
+	    let num = e.target ? e.target.dataset.multiple : e;
+		
+		scroll.scrollTo(window.innerHeight * num + headerHeight());
+  };
     return (
 			<section>
 				<ParaxTitle img={images("./ingredients.jpg")}>
@@ -69,39 +113,50 @@ const Homepage = () => {
 						</button>
 					</Div>
 				</ParaxTitle>
+				
 				<ParaxChoice img={images("./food-1932466_1280.jpg")}>
-					<h1>Je recherche une recette par...</h1>
+					<Title>Je recherche une recette par...</Title>
 					<Choice>
-						<div onClick={scrolling}>
+						<div onClick={() => switchView('ingredients',2)}>
 							<h4 data-multiple="2">ingrédients</h4>
 							<img
 								src={images("./ingredientsfood.jpg")}
 								alt="ingrédients"
-								width="400"
+								width="300"
 							/>
 						</div>
-						<div>
+						<div onClick={() => switchView('type',2)}>
 							<h4>type</h4>
-							<CarrouselImg>
-
-							
 							<img
 								src={images("./intlfood/intlfood1.jpg")}
 								alt="un plat"
-								width="400"
+								width="300"
 							/>
-							</CarrouselImg>
+							{/* </CarrouselImg> */}
 						</div>
 					</Choice>
 				</ParaxChoice>
-				{/* 
-- créer 2 composants: composants starter et plat
+{/* 
+- créer 2 composants: composants ingredients et plat
 - importer ses composants selon lazy load 
 - Le composant contiendra sa liste respectif d'ingrédients.
-*/}{" "}
-				<Suspense fallback={<div>Loading...</div>}>
-					<LazyStarter />
+*/}
+				{
+				view.ingredients ? <Suspense fallback={<div>Loading...</div>}>
+					<LazyIngredients data={showRecipes}/>
 				</Suspense>
+				
+				:
+				view.type && <Suspense fallback={<div>Loading...</div>}>
+					<LazyCountry />
+				</Suspense>
+				}
+				
+				{
+				recipes.show && <Suspense fallback={<div>Loading</div>}>
+					<LazyRecipes data={recipes.result}/>
+				</Suspense>
+				}
 			</section>
 		);
   }
