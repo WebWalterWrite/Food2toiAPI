@@ -21,15 +21,15 @@ OPTIONS :
         "q" prend 1 ou plusieurs paramètres ( poulet / poulet+riz / poulet+riz+carottes)
 */
 
-export const getRecipes = async (...data) => {
+export const getRecipes = async (data) => {
   try{
   // concatener les ingrédients si plusieurs choix.
-  let choice = data.join("+");
-
+ //let choice = data.join("+");
+  console.log(data)
   const result = await axios.get(
-		`${URL}?&app_id=${API_ID}&app_key=${API_KEY}&q=${choice}&from=0&to=20`
+		`${URL}?&app_id=${API_ID}&app_key=${API_KEY}&q=${data}&from=0&to=20`
 	);
-  console.log(result.data.hits);
+  console.log(result);
   return result.data.hits;
   }
   catch(e){
