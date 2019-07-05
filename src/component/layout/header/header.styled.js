@@ -6,14 +6,14 @@ export const Title = styled.h1`
   color: white;
   font-family: Viga;
   letter-spacing: 3px;
-  ${media.desktopL`font-size: 5em;`};
+  ${media.desktopL`font-size: 3em;`};
   ${media.phone`font-size: 2em; text-align:center;`};
 `;
 
 export const Span = styled.span`
-    color: #ef0078;
+    color: #4fee76; 
 }`;
-
+//#ef0078
 export const FontSpan = styled(Span)`
   font-size: 32px;
 `;
