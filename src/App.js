@@ -37,9 +37,9 @@ const GlobalStyle = createGlobalStyle`
 *{
     margin:0;
     padding:0;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
     };
-body {
+body {  
   height: 100%;
   width:100%;
 };
