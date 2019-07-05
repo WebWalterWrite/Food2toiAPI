@@ -1,27 +1,27 @@
 import React from 'react';
-import { Transition } from 'react-transition-group';
 
 import { ingredients } from "./data.js";
 import { Img, List } from './ingredients.styled';
 
-// tableau viandes
-const meats = ingredients.filter( ({type}) => type === 'm' );
 
 // tableau légumes
 const vegetables = ingredients.filter( ({type}) => type === 'v' );
+
+// tableau féculents
+const starchy = ingredients.filter( ({type}) => type === 'f');
+// tableau viandes
+const meats = ingredients.filter( ({type}) => type === 'm' );
 
 // tableau sauces
 const sauces = ingredients.filter( ({type})=> type === "s");
 
 
+
 const ingredientsList = ({data: {t, fn}}) => {
 
-    let type = t === "vegetables" ? vegetables : t === 'meats' ? meats : t === "sauces" && sauces ;
-
+    let type = t === "starchy" ? starchy : t === 'vegetables' ? vegetables : t === 'meats' ? meats : t === 'sauces' && sauces;
 
     return(
-        
-
         <List>
         {type.map(({ image, name, id }, k) => {
             return (
