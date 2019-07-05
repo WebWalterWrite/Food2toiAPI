@@ -74,6 +74,7 @@ const Ingredients = ({data: fn}) => {
 			<section>
 				<NavIngredients>
 					<ul>
+						<li onClick={ () => setType('starchy')}>Féculents</li>
 						<li onClick={ () => setType('vegetables')}>Legumes</li>
 						<li onClick={ () => setType('meats')}>Viandes</li>
 						<li onClick={ ()=> setType('sauces')}>Sauces & Condiments</li>
