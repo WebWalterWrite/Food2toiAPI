@@ -10,12 +10,16 @@ export const Img = styled.img`
       width:60px;
       height:60px;
     `}
+    ${media.desktopL`
+        width:170px;
+        height:150px;
+    `}
     border:${props => !props.is_visible ? 'none' : 'solid 2px green'};
 `
 export const List = styled.div`
   width:80%;
   margin:0 auto;
-  padding: 1em;
+  padding: .5em;
   display:flex !important;
   flex-wrap:wrap;
   align-items: center;
@@ -30,6 +34,7 @@ export const List = styled.div`
 ${media.desktopM`
     p{font-size:26px;}
 `}
+
 ${media.phone`
     width:90%;
     div{ margin:0 .5em 0 .5em;}
@@ -46,11 +51,16 @@ ul{
     li{
         list-style: none;
         width:100%;
-        background-color: #4fee76;
+        :first-child{
+            background-color:#FFA500;
+        }
         :nth-child(2n){
-            background-color:#C4293A;
+            background-color: #4fee76;
         }
         :nth-child(3n){
+            background-color:#C4293A;
+        }
+        :nth-child(4n){
             background-color:#FBE898;
         }
         border-radius:10px 35px 0px 0px;
@@ -64,13 +74,17 @@ ul{
     }
 }
 ${media.desktopM`
-        width:80%;
-        font-size:48px;
-     `}
-    ${media.phone`
-        font-size:22px;
-        width:90%;
-    `}
+    width:80%;
+    font-size:38px;
+`}
+${media.desktopL`
+    width:80%;
+    font-size:30px;
+`}
+${media.phone`
+    font-size:22px;
+    width:90%;
+`}
 `;
 
 export const Cart = styled.div`
