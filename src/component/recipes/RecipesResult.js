@@ -14,7 +14,9 @@ const RecipesResult = ({data}) =>{
             <RecipeBox>
                 {data.map( ({recipe: {image, label}}) =>(
                 <Recipe>
-                    <img src={image} width="200px" alt="" />
+                    <div>
+                        <img src={image} width="200px" alt="" />
+                    </div>
                     <h2>{label}</h2>
                 </Recipe>
                  )) }
