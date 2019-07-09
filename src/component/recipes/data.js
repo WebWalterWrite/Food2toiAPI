@@ -84,7 +84,7 @@ const starchys = starchy.map( ({name, api_name})=> ({
 );
 
 const meats = meat.map( ({name, api_name}) =>  ({
-	id:  `name_${name.substr(0,3)}_${Math.floor(Math.random() * (30 - 10 + 1)) + 10}`,
+	id:  `m_${name.substr(0,3)}_${Math.floor(Math.random() * (30 - 10 + 1)) + 10}`,
 	type:'m',
 	name: replaceBySpace(name),
 	api_name: api_name,
