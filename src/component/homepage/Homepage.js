@@ -1,7 +1,6 @@
 import React, { lazy, Suspense, useState } from "react";
 import { animateScroll as scroll } from 'react-scroll';
 import { ParaxTitle, ParaxChoice } from "../parallax/Parallax";
-
 import { Choice, Div, Title} from './homepage.styled';
 
 const images = require.context("../../assets/images/", true);
@@ -25,7 +24,6 @@ const Homepage = () => {
 	  result:[]
   });
 
-  console.log(recipes)
 
   /**
    * @description - Retourne la hauteur de la fenetre en cours
@@ -55,8 +53,7 @@ const Homepage = () => {
 	
   };
 
-  const showRecipes = data => {
-	  console.log(data)
+  const showRecipes = async data => {
 	  setRecipes(prevState => ({show:!prevState.show, result:data }));
 	  scrolling(3)
   };
