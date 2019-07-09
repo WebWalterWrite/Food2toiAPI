@@ -33,12 +33,8 @@ export const storeData = (item, p) => {
 
 
 /**
- * @description - return array of images
- * @param {string} path - chemin directory
+ * @description - remplace par un espace tous le tirets
+ * @param {string} value - la valeur à traiter
+ * @returns {string} - renvoi la valeur sans tirets
  */
-
- export const arrayOfContentFolder = path => {
-      
-    console.log(path)
-
- }
+export const replaceBySpace = value => value.split('-').join(' ');
