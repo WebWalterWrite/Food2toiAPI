@@ -4,7 +4,7 @@ const getLocalStorage = item => JSON.parse(localStorage.getItem(item));
 
 console.log(getLocalStorage())
 // persister localstorage
-const setLocalStorage = (item, array) => localStorage.setItem(item, JSON.stringify(array));
+export const setLocalStorage = (item, array) => localStorage.setItem(item, JSON.stringify(array));
 
 /**
  * 
