@@ -1,4 +1,4 @@
-import React, {useState, useEffect}  from "react";
+import React, {Fragment, useState, useEffect}  from "react";
 
 // import component
 import { ParaxStarter } from "../parallax/Parallax";
@@ -9,7 +9,7 @@ import { getRecipes } from '../../utils/api';
 
 // import data & utils functions
 import { Cart, NavIngredients } from './ingredients.styled';
-import { storeData } from '../../utils/functions';
+import { storeData, setLocalStorage } from '../../utils/functions';
 
 // import styles & images
 import { Div } from "../homepage/homepage.styled";
@@ -61,11 +61,20 @@ const Ingredients = ({data: fn}) => {
 		localStorage.clear();
 		setCart([])
 	}
+	/**
+	 * @description -  supprimer un élément du local storage
+	 */
+	const deleteProduct = async e => {
+		const p = e.target.dataset.id;
+		const data = JSON.parse(localStorage.getItem("ingredients"));
+		const newData = data.filter(({ id }) => id !== p);
+		await setLocalStorage('ingredients', newData);
+	};
+
 	useEffect( () =>{
 		const data = localStorage.getItem('ingredients');
 		data && setCart(JSON.parse(data));
-	}, [] );
-
+	}, [cart] );
 
 	return (
 		<ParaxStarter img={starterBack}>
@@ -75,32 +84,41 @@ const Ingredients = ({data: fn}) => {
 			<section>
 				<NavIngredients>
 					<ul>
-						<li onClick={ () => setType('starchy')}>Féculents</li>
-						<li onClick={ () => setType('vegetables')}>Legumes</li>
-						<li onClick={ () => setType('meats')}>Viandes</li>
-						<li onClick={ () =>setType('herbs')}>Herbes arômatiques</li>
-						<li onClick={ ()=> setType('sauces')}>Sauces & Condiments</li>
+						<li onClick={() => setType("starchy")}>Féculents</li>
+						<li onClick={() => setType("vegetables")}>Legumes</li>
+						<li onClick={() => setType("meats")}>Viandes</li>
+						<li onClick={() => setType("herbs")}>Herbes arômatiques</li>
+						<li onClick={() => setType("sauces")}>Sauces & Condiments</li>
 					</ul>
 				</NavIngredients>
-				<IngredientsList data={{t:type, fn: storeProducts}}/>	
+				<IngredientsList data={{ t: type, fn: storeProducts }} />
 			</section>
 
 			<Div>
 				<Cart>
-					{cart.length > 0 ? cart.map( ({image},k) => {
-					return(
-						<img key={k} src={image}  alt="légumes" width="100" />		
-					)
-					})		
-				: 'aucun ingrédients'}
-			
-				{cart.length > 0 && 
-				<div>
-				 <button onClick={searchRecipes}>Rechercher</button>
-				 <button onClick={clearProducts}>Effacer</button>
-				</div>	
-				}
-				</Cart>	
+						{cart.length > 0
+							?
+							<div>
+							{ cart.map(({ image, id }, k) => {
+									console.log(cart)
+									return (
+										<div key={k}>
+											<img key={k} src={image} alt="légumes" width="100" />
+											<div data-id={id} onClick={deleteProduct}>remove</div>
+										</div>
+									);
+							  })
+							}
+							</div>
+						
+							: "aucun ingrédients"}
+						{cart.length > 0 && (
+							<div>
+								<button onClick={searchRecipes}>Rechercher</button>
+								<button onClick={clearProducts}>Effacer</button>
+							</div>
+						)}
+				</Cart>
 			</Div>
 		</ParaxStarter>
 	);
