@@ -24,14 +24,15 @@ export const List = styled.div`
   flex-wrap:wrap;
   align-items: center;
   justify-content: space-around;
-  background-color: rgba(0,0,0,1);
+  background-color: rgba(0,0,0,.8);
     div{
         text-align:center;
         padding-top:.5em;
         cursor: pointer;
         margin:20px;
     }
-${media.desktopM`
+${media.desktopL`
+    height:600px;
     p{font-size:26px;}
 `}
 
@@ -54,13 +55,16 @@ ul{
         :first-child{
             background-color:#FFA500;
         }
-        :nth-child(2n){
-            background-color: #4fee76;
+        :nth-child(2){
+            background-color: #007D00;
         }
-        :nth-child(3n){
+        :nth-child(3){
             background-color:#C4293A;
         }
-        :nth-child(4n){
+        :nth-child(4){
+            background-color:#4fee76 ;
+        }
+        :nth-child(5){
             background-color:#FBE898;
         }
         border-radius:10px 35px 0px 0px;

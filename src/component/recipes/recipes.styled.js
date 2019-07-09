@@ -6,17 +6,22 @@ export const RecipeBox = styled.section`
     flex-wrap: wrap;
 `;
 export const Recipe = styled.div`
-    border: solid 2px #50EE75;
     background-color: #50EE75;
+    border: solid 1px #50EE75;
     border-radius: 8px;
+    >div{overflow: hidden;}
     img{
-        border-radius:50%;
-        margin-top:1%;
+        width:100%;
+        :hover{
+            transition: all 800ms ease-in;
+            transform: scale(1.2); 
+            
+        }
     }
     ${media.desktopL`
         width:18%;
         margin:1%;
-        h2{font-size:20px;}
+        h2{font-size:28px;}
     `}
     ${media.phone`
         width:90%;
