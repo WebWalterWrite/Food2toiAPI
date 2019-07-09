@@ -1,4 +1,5 @@
 import React, {useState, useEffect}  from "react";
+
 // import component
 import { ParaxStarter } from "../parallax/Parallax";
 import { ingredients } from "./data.js";
@@ -77,6 +78,7 @@ const Ingredients = ({data: fn}) => {
 						<li onClick={ () => setType('starchy')}>Féculents</li>
 						<li onClick={ () => setType('vegetables')}>Legumes</li>
 						<li onClick={ () => setType('meats')}>Viandes</li>
+						<li onClick={ () =>setType('herbs')}>Herbes arômatiques</li>
 						<li onClick={ ()=> setType('sauces')}>Sauces & Condiments</li>
 					</ul>
 				</NavIngredients>
